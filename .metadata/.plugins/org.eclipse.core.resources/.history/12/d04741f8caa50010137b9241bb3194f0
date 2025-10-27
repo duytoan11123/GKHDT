@@ -1,0 +1,35 @@
+class AreaCalculator {
+    public double calculateArea(Object shape) {
+        if (shape instanceof Rectangle) {
+            Rectangle r = (Rectangle) shape;
+            return r.getWidth() * r.getHeight();
+        } else if (shape instanceof Circle) {
+            Circle c = (Circle) shape;
+            return Math.PI * c.getRadius() * c.getRadius();
+        }
+        return 0;
+    }
+}
+
+
+interface shape {
+	public double getArea();
+}
+class Rectangle implements shape{
+    private double width, height;
+    // getters, setters...
+    public double getArea() {
+    	return 0.5*width*height;
+    }
+}
+
+
+class Circle implements shape{
+    private double radius;
+    // getters, setters...
+    public double getArea() {
+    	return 3.14*radius*radius;
+    }
+}
+
+

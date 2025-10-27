@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -14,7 +16,8 @@ public class ProductCategoryTranslation {
     
     // Tắt insertable/updatable để Service gán ID thủ công (giải quyết lỗi SQL)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ProductCategoryID", nullable = false, insertable = false, updatable = false) 
+    @JoinColumn(name = "ProductCategoryID", nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
     private ProductCategory category;
 
     @ManyToOne(fetch = FetchType.LAZY)

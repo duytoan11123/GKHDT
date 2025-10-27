@@ -1,0 +1,42 @@
+class Lab1OCP {
+    public double calculateArea(Shape shape) {
+        return shape.getArea();
+    }
+}
+
+interface Shape {
+	public double getArea();
+}
+
+class Rectangle implements Shape{
+    private double width, height;
+    // getters, setters...
+    @Override
+    public double getArea() {
+    	return 0.5*width*height;
+    }
+}
+
+
+class Circle implements Shape{
+    private double radius;
+    // getters, setters...
+    @Override
+    public double getArea() {
+    	return 3.14*radius*radius;
+    }
+}
+
+class Triangle implements Shape {
+    private double base, height;
+
+    public Triangle(double base, double height) {
+        this.base = base;
+        this.height = height;
+    }
+
+    @Override
+    public double getArea() {
+        return 0.5 * base * height;
+    }
+}

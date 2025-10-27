@@ -1,0 +1,30 @@
+class AreaCalculator {
+    public double calculateArea(Shape shape) {
+        
+    }
+}
+
+
+interface Shape {
+	public double getArea();
+}
+
+
+class Rectangle implements Shape{
+    private double width, height;
+    // getters, setters...
+    public double getArea() {
+    	return 0.5*width*height;
+    }
+}
+
+
+class Circle implements Shape{
+    private double radius;
+    // getters, setters...
+    public double getArea() {
+    	return 3.14*radius*radius;
+    }
+}
+
+

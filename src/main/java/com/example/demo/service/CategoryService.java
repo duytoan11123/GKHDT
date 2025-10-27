@@ -11,7 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
-
+import com.example.demo.dto.CategoryFindDTO;
+import com.example.demo.dto.CategoryTranslationFindDTO;
 @Service
 public class CategoryService {
     
@@ -41,7 +42,7 @@ public class CategoryService {
             
             // BƯỚC KHẮC PHỤC LỖI SQL: TẠO VÀ GÁN KHÓA TỔNG HỢP MỘT CÁCH THỦ CÔNG
             ProductCategoryTranslationId translationId = new ProductCategoryTranslationId(
-                savedCategory.getProductCategoryId(), // SỬ DỤNG ID ĐÃ CÓ
+                savedCategory.getProductCategoryId(),
                 language.getLanguageId()
             );
             
@@ -71,5 +72,20 @@ public class CategoryService {
         lang.setLanguageId(id);
         lang.setLanguage(name);
         return languageRepository.save(lang);
+    }
+    
+    public List<CategoryFindDTO> getAllProductCategory(){
+    	List<CategoryFindDTO> resultCategories = new ArrayList<>();
+    	List<ProductCategory> allCategory = new ArrayList<>();
+    	allCategory = categoryRepository.findAll();
+    	for (ProductCategory category: allCategory) {
+    		List<CategoryTranslationFindDTO> translations = new ArrayList<>();
+    		for (ProductCategoryTranslation translation: category.getTranslations()) {
+        		translations.add(new CategoryTranslationFindDTO(translation.getLanguage().getLanguage(),translation.getCategoryName()));
+    		}
+    		resultCategories.add(new CategoryFindDTO(category.getProductCategoryId(),
+    				category.getCanBeShipped(),translations));
+    	}
+    	return resultCategories;
     }
 }

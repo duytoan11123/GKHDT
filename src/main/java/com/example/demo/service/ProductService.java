@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+import com.example.demo.model.Product;
 @Service
 public class ProductService {
     
@@ -71,5 +71,11 @@ public class ProductService {
         savedProduct.setTranslations(new HashSet<>(savedTranslations));
         
         return savedProduct; 
+    }
+    
+    public List<Product> getAllProduct() {
+    	List<Product> allProduct = new ArrayList<>();
+    	allProduct = productRepository.findAll();
+    	return allProduct;
     }
 }

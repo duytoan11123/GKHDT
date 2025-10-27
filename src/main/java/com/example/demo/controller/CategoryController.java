@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.CategoryCreateDTO;
+import com.example.demo.dto.CategoryFindDTO;
 import com.example.demo.model.Language;
 import com.example.demo.model.ProductCategory;
 import com.example.demo.service.CategoryService;
@@ -8,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
@@ -25,7 +26,7 @@ public class CategoryController {
             // Trả về 400 và kèm thông báo lỗi để debug
             return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(null); // Hoặc .body(e.getMessage()) nếu muốn trả về thông báo lỗi String
+                .body(null);
         }
     }
     
@@ -40,5 +41,10 @@ public class CategoryController {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(null);
         }
+    }
+    
+    @GetMapping
+    public List<CategoryFindDTO> getAllCategory(){
+    	return categoryService.getAllProductCategory();
     }
 }
