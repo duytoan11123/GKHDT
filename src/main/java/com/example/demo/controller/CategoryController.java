@@ -16,9 +16,9 @@ public class CategoryController {
     
     @Autowired private CategoryService categoryService;
 
-    // Endpoint tạo Danh mục kèm bản dịch
+    
     @PostMapping
-    public ResponseEntity<ProductCategory> createCategory(@RequestBody CategoryCreateDTO dto) {
+    public ResponseEntity<ProductCategory> createCategory( @RequestBody CategoryCreateDTO dto) {
         try {
             ProductCategory newCategory = categoryService.createCategory(dto);
             return new ResponseEntity<>(newCategory, HttpStatus.CREATED);
@@ -30,7 +30,6 @@ public class CategoryController {
         }
     }
     
-    // Endpoint tạo Ngôn ngữ mới
     @PostMapping("/languages")
     public ResponseEntity<Language> createLanguage(@RequestParam String id, @RequestParam String name) {
         try {
@@ -46,5 +45,10 @@ public class CategoryController {
     @GetMapping
     public List<CategoryFindDTO> getAllCategory(){
     	return categoryService.getAllProductCategory();
+    }
+    
+    @GetMapping("/admin")
+    public String adminAPI() {
+    	return "Xin chào admin";
     }
 }
